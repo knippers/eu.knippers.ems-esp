@@ -15,7 +15,7 @@ class ThermostatDriver extends Homey.Driver {
       });
   }
 
-  onPair(session: Homey.Driver.PairSession): void {
+  async onPair(session: Homey.Driver.PairSession): Promise<void> {
     driverOnPair(this, session, "thermostat");
   }
 }

@@ -18,7 +18,7 @@ class BoilerDriver extends Homey.Driver {
       .getDeviceTriggerCard("boiler_wwcurtemp_less_than")
       .registerRunListener(
         async (
-          args: { wwcurtemp: number; device: BoilerDevice },
+          args: { wwcurtemp: number; device: BoilerDevice; },
           state: BoilerData
         ) => {
           if (state.wwcurtemp <= args.wwcurtemp) {
@@ -35,7 +35,7 @@ class BoilerDriver extends Homey.Driver {
       );
   }
 
-  onPair(session: Homey.Driver.PairSession): void {
+  async onPair(session: Homey.Driver.PairSession): Promise<void> {
     driverOnPair(this, session, "boiler");
   }
 }

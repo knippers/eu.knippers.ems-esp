@@ -18,6 +18,10 @@ export class BoilerDevice extends Homey.Device {
     );
   }
 
+  private get intervalMs() {
+    return Number(this.getSetting("poll_interval") || 10000);
+  }
+
   private triggerFlows(newData: BoilerData) {
     // Don't have to explicity triggers that ends with _changed
     // because Homey does that automatically for us
@@ -41,14 +45,18 @@ export class BoilerDevice extends Homey.Device {
     ]);
   }
 
-  async onInit() {
+  private startPolling() {
+    this.stopPolling?.();
+
     this.stopPolling = polling(
-      Number(this.getSetting("poll_interval") || 10000),
+      this.intervalMs,
       () => this.client.getBoilerData(),
       async (err, res) => {
         if (err) {
           this.error(err);
           await this.setUnavailable(`${err}`).catch(this.error);
+          // Automatically restart polling after the interval to recover from errors.          
+          setTimeout(() => this.startPolling(), this.intervalMs * 2);
         } else if (res) {
           await this.updateCapabilityValues(res).catch(this.error);
           await this.setAvailable().catch(this.error);
@@ -56,6 +64,10 @@ export class BoilerDevice extends Homey.Device {
         }
       }
     );
+  }
+
+  async onInit() {
+    this.startPolling();
   }
 
   onDeleted() {

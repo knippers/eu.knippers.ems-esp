@@ -22,13 +22,18 @@ class ThermostatDevice extends Homey.Device {
   }
 
   private startPolling() {
-    this.stopPolling = this.stopPolling = polling(
-      Number(this.getSetting("poll_interval") || 10000),
+    this.stopPolling?.();
+
+    this.stopPolling = polling(
+      this.intervalMs,
       () => this.client.getThermostatData(),
       async (err, res) => {
         if (err) {
           this.error(err);
           await this.setUnavailable(`${err}`).catch(this.error);
+          // Automatically restart polling after the interval to recover from errors.          
+          setTimeout(() => this.startPolling(), this.intervalMs * 2);
+          return;
         } else if (res) {
           await this.updateCapabilityValues(res).catch(this.error);
           await this.setAvailable().catch(this.error);
@@ -107,14 +112,14 @@ class ThermostatDevice extends Homey.Device {
 
     this.homey.flow
       .getConditionCard("outdoor-temp-less-than")
-      .registerRunListener(async (args: { temp: number }, state) => {
+      .registerRunListener(async (args: { temp: number; }, state) => {
         const temp = this.oldData?.dampedoutdoortemp;
         return temp && temp < args.temp;
       });
 
     this.homey.flow
       .getConditionCard("outdoor-temp-greater-than")
-      .registerRunListener(async (args: { temp: number }, state) => {
+      .registerRunListener(async (args: { temp: number; }, state) => {
         const temp = this.oldData?.dampedoutdoortemp;
         return temp && temp > args.temp;
       });
