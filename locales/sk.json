@@ -1,0 +1,10 @@
+{
+  "pair": {
+    "title": "EMS-ESP",
+    "subtitle": "Pripojiť vaše __device__",
+    "network_address": "Sieťová aresa (IP alebo hostname)",
+    "access_token": "Prístupový Token pre admin",
+    "access_token_hint": "Nájditeľné v EMS-ESP web rozhraní, pod Security a Manage Users. Potrebný prístup pre záspis",
+    "check_connection": "Skontrolovať pripojenie"
+  }
+}
