@@ -1,0 +1,10 @@
+{
+  "pair": {
+    "title": "EMS-ESP",
+    "subtitle": "Verbind je __device__",
+    "network_address": "Netwerk adres (IP of hostname)",
+    "access_token": "Access Token voor admin",
+    "access_token_hint": "Kan je vinden in de EMS-ESP web interface onder Security > Manage users. Schrijf toegang benodigd",
+    "check_connection": "Controleer verbinding"
+  }
+}

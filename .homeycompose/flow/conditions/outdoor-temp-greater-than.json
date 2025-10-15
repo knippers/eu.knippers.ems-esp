@@ -1,16 +1,19 @@
 {
   "title": {
-    "en": "Outdoor temperature greater than..."
+    "en": "Outdoor temperature greater than...",
+    "nl": "Buiten temperatuur groter dan..."
   },
   "titleFormatted": {
-    "en": "Outdoor temperature greater than [[temp]]°C"
+    "en": "Outdoor temperature greater than [[temp]]°C",
+    "nl": "Buiten temperatuur groter dan [[temp]]°C"
   },
   "args": [
     {
       "type": "number",
       "name": "temp",
       "placeholder": {
-        "en": "0"
+        "en": "0",
+        "nl": "0"
       },
       "min": -50,
       "max": 50,

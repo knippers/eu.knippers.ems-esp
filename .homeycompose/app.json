@@ -1,16 +1,21 @@
 {
-  "id": "se.assermark.ems-esp",
+  "id": "eu.knippers.ems-esp",
   "version": "1.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
-  "platforms": ["local"],
+  "platforms": [
+    "local"
+  ],
   "name": {
     "en": "EMS-ESP"
   },
   "description": {
-    "en": "Adds support for EMS-ESP devices."
+    "en": "Adds support for EMS-ESP devices.",
+    "nl": "Voegt ondersteuning voor EMS-ESP apparaten toe."
   },
-  "category": ["climate"],
+  "category": [
+    "climate"
+  ],
   "permissions": [],
   "images": {
     "small": "/assets/images/small.png",
@@ -18,8 +23,16 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "author": {
-    "name": "Andreas Assermark",
-    "email": "assermark@hotmail.com"
+    "name": "Daniel Knippers",
+    "email": "daniel@knippers.eu"
   },
-  "brandColor": "#375f92"
+  "brandColor": "#2268a5",
+  "tags": {
+    "nl": [
+      "bbqkees boiler ems-esp thermostat"
+    ],
+    "en": [
+      "bbqkees boiler ems-esp thermostat"
+    ]
+  }
 }

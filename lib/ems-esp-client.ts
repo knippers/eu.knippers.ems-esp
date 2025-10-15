@@ -26,7 +26,7 @@ export class EmsEspClient {
       await this.mutex.acquire();
       const res = await EmsEspClient.checkResponse(
         fetch(`http://${this.networkAddress}/${path}`, {
-          timeout: 5000,
+          timeout: 10000,
           headers: { Accept: "application/json" },
         })
       );
@@ -62,7 +62,7 @@ export class EmsEspClient {
   }
 
   public async getDevices(): Promise<Array<DeviceData>> {
-    return this.getSystemData().then((systemData) => systemData.Devices);
+    return this.getSystemData().then((systemData) => systemData.devices);
   }
 
   public async getThermostatData(): Promise<ThermostatData> {

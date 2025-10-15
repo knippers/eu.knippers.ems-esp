@@ -3,7 +3,8 @@
     "type": "group",
     "label": {
       "en": "Server Settings",
-      "sv": "Serverinställningar"
+      "sv": "Serverinställningar",
+      "nl": "Server instellingen"
     },
     "children": [
       {
@@ -11,7 +12,8 @@
         "type": "text",
         "label": {
           "en": "Network Adddress",
-          "sv": "Network Adddress"
+          "sv": "Network Adddress",
+          "nl": "Network Adddress"
         },
         "value": "ems-esp.local"
       },
@@ -20,11 +22,13 @@
         "type": "text",
         "label": {
           "en": "Access Token",
-          "sv": "Access Token"
+          "sv": "Access Token",
+          "nl": "Access Token"
         },
         "hint": {
           "en": "Found in EMS-ESP web interface, under Security and Manage Users",
-          "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare"
+          "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare",
+          "nl": "Kan je vinden in de EMS-ESP web interface, bij Security > Manage Users"
         },
         "value": ""
       },
@@ -33,7 +37,8 @@
         "type": "number",
         "label": {
           "en": "Poll intervall in ms",
-          "sv": "Poll intervall i ms"
+          "sv": "Poll intervall i ms",
+          "nl": "Pol interval in ms"
         },
         "value": 5000
       }

@@ -32,12 +32,13 @@ export function driverOnPair(
     const access_token = driver.homey.settings.get("access_token");
     const client = new EmsEspClient(network_address, access_token);
     const devices = await client.getDevices();
+
     return devices
       .filter((device) => device.type === deviceType)
       .map((device) => {
         return {
-          name: `EMS-ESP ${capitalize(deviceType)} ${device["device id"]}`,
-          data: { id: device["device id"] },
+          name: `EMS-ESP ${capitalize(deviceType)} ${device["deviceID"]} (${device["entities"]})`,
+          data: { id: device["deviceID"] },
           settings: { network_address, access_token },
         };
       });

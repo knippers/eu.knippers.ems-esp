@@ -14,28 +14,27 @@ export type DeviceSettings = {
 };
 
 export type SystemData = {
-  "System Info": SystemInfo;
-  "Network Info": unknown;
-  "NTP Info": unknown;
-  "OTA Info": unknown;
-  "MQTT Info": unknown;
-  "Syslog Info": unknown;
-  "Sensor Info": unknown;
-  "API Info": unknown;
-  "Bus Info": unknown;
-  Settings: unknown;
-  Devices: Array<DeviceData>;
+  "system": SystemInfo;
+  "network": unknown;
+  "ntp": unknown;
+  "mqtt": unknown;
+  "syslog": unknown;
+  "sensor": unknown;
+  "api": unknown;
+  "bus": unknown;
+  "settings": unknown;
+  "devices": Array<DeviceData>;
 };
 
 export type SystemInfo = {
-  version: string;
-  platform: string;
-  uptime: string;
-  "uptime (seconds)": number;
-  "free mem": number;
-  "max alloc": number;
-  "free app": number;
-  "reset reason": string;
+  "version": string;
+  "platform": string;
+  "uptime": string;
+  "uptimeSec": number;
+  "freeMem": number;
+  "maxAlloc": number;
+  "freeApp": number;
+  "resetReason": string;
 };
 
 export type DeviceType =
@@ -53,16 +52,16 @@ export type DeviceType =
   | "pump";
 
 export type DeviceData = {
-  type: DeviceType;
-  name: string;
-  "device id": string;
-  "product id": string;
-  version: string;
-  entities: number;
-  "handlers received": string;
-  "handlers fetched": string;
-  "handlers pending": string;
-  "handlers ignored": string;
+  "type": DeviceType;
+  "name": string;
+  "deviceID": string;
+  "productID": string;
+  "version": string;
+  "entities": number;
+  "handlersReceived": string;
+  "handlersFetched": string;
+  "handlersPending": string;
+  "handlersIgnored": string;
 };
 
 export type ThermostatData = {
