@@ -27,21 +27,21 @@ export class BoilerDevice extends Homey.Device {
     // because Homey does that automatically for us
     // https://apps.developer.homey.app/the-basics/flow#custom-capability-changed
     return this.homey.flow
-      .getDeviceTriggerCard("boiler_wwcurtemp_less_than")
-      ?.trigger(this, { wwcurtemp: newData.wwcurtemp }, newData);
+      .getDeviceTriggerCard("boiler_dhw_curtemp_less_than")
+      ?.trigger(this, { boiler_dhw_curtemp: newData.dhw.curtemp }, newData);
   }
 
   private async updateCapabilityValues(data: BoilerData) {
     return setCapabilityValues(this, [
       ["boiler_curflowtemp", data.curflowtemp],
-      ["boiler_hpbrinein", data.hpbrinein],
-      ["boiler_hpbrineout", data.hpbrineout],
-      ["boiler_hpbrinepumpspd", data.hpbrinepumpspd],
-      ["boiler_hpcircspd", data.hpcircspd],
-      ["boiler_hpcompspd", data.hpcompspd],
+      ["boiler_dhw_curtemp", data.dhw.curtemp],
+      ["boiler_dhw_settemp", data.dhw.settemp],
+      ["boiler_outdoortemp", data.outdoortemp],
+      ["boiler_rettemp", data.rettemp],
       ["boiler_lastcode", formatLastCode(parseLastCode(data.lastcode))],
       ["boiler_rettemp", data.rettemp],
-      ["boiler_wwcurtemp", data.wwcurtemp],
+      ["boiler_metertotal", data.metertotal],
+      ["measure_power", data.metertotal]
     ]);
   }
 

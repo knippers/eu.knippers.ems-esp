@@ -1,8 +1,8 @@
 {
   "type": "number",
   "title": {
-    "en": "Brine circuit out",
-    "sv": "Köldbärare ut"
+    "en": "Outdoor temperature",
+    "nl": "Buiten temperatuur"
   },
   "getable": true,
   "setable": false,

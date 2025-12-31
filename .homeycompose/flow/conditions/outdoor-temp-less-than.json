@@ -1,9 +1,11 @@
 {
   "title": {
-    "en": "Outdoor temperature less than..."
+    "en": "Outdoor temperature less than...",
+    "nl": "Buitentemperatuur minder dan..."
   },
   "titleFormatted": {
-    "en": "Outdoor temperature less than [[temp]]°C"
+    "en": "Outdoor temperature less than [[temp]]°C",
+    "nl": "Buitemtemperatuur minder dan [[temp]]°C"
   },
   "args": [
     {

@@ -15,19 +15,19 @@ class BoilerDriver extends Homey.Driver {
       });
 
     this.homey.flow
-      .getDeviceTriggerCard("boiler_wwcurtemp_less_than")
+      .getDeviceTriggerCard("boiler_dhw_curtemp_less_than")
       .registerRunListener(
         async (
-          args: { wwcurtemp: number; device: BoilerDevice; },
+          args: { boiler_dhw_curtemp: number; device: BoilerDevice; },
           state: BoilerData
         ) => {
-          if (state.wwcurtemp <= args.wwcurtemp) {
-            if (this.throttling.check("wwcurtemp_less_than", hoursToMs(8))) {
-              this.log("Trigger boiler_wwcurtemp_less_than has been triggered");
+          if (state.dhw.curtemp <= args.boiler_dhw_curtemp) {
+            if (this.throttling.check("boiler_dhw_curtemp_less_than", hoursToMs(8))) {
+              this.log("Trigger boiler_dhw_curtemp_less_than has been triggered");
               return true;
             }
           } else {
-            this.throttling.reset("wwcurtemp_less_than");
+            this.throttling.reset("boiler_dhw_curtemp_less_than");
           }
 
           return false;

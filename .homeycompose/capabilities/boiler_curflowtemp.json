@@ -2,7 +2,8 @@
   "type": "number",
   "title": {
     "en": "Flow temp",
-    "sv": "Framledningstemp"
+    "sv": "Framledningstemp",
+    "nl": "Flow temperatuur"
   },
   "getable": true,
   "setable": false,

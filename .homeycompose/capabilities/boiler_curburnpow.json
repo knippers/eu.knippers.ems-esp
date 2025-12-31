@@ -1,8 +1,8 @@
 {
   "type": "number",
   "title": {
-    "en": "Compressor pump speed",
-    "sv": "Kompressorpump hastighet"
+    "en": "Actual modulation",
+    "nl": "Modulatie"
   },
   "getable": true,
   "setable": false,

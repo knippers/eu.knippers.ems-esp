@@ -1,1 +1,1 @@
-Adds support for devices that can be read or updated via EMS-ESP. For example a BBQKees device.
+Adds support for devices that can be read or updated via EMS-ESP (for example a BBQKees Gateway). 

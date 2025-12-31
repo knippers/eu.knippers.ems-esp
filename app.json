@@ -1,6 +1,6 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
-  "id": "se.assermark.ems-esp",
+  "id": "eu.knippers.ems-esp",
   "version": "1.0.0",
   "compatibility": ">=5.0.0",
   "sdk": 3,
@@ -8,10 +8,12 @@
     "local"
   ],
   "name": {
-    "en": "EMS-ESP"
+    "en": "EMS-ESP",
+    "nl": "EMS-ESP"
   },
   "description": {
-    "en": "Adds support for EMS-ESP devices."
+    "en": "Adds support for EMS-ESP devices.",
+    "nl": "Voegt ondersteuning voor EMS-ESP apparaten toe."
   },
   "category": [
     "climate"
@@ -23,25 +25,38 @@
     "xlarge": "/assets/images/xlarge.png"
   },
   "author": {
-    "name": "Andreas Assermark",
-    "email": "assermark@hotmail.com"
+    "name": "Daniel Knippers",
+    "email": "daniel@knippers.eu"
   },
-  "brandColor": "#375f92",
+  "brandColor": "#2268a5",
+  "tags": {
+    "nl": [
+      "bbqkees boiler ems-esp thermostat"
+    ],
+    "en": [
+      "bbqkees boiler ems-esp thermostat"
+    ]
+  },
+  "source": "https://github.com/knippers/eu.knippers.ems-esp",
+  "support": "https://github.com/knippers/eu.knippers.ems-esp/issues",
   "flow": {
     "conditions": [
       {
         "title": {
-          "en": "Outdoor temperature greater than..."
+          "en": "Outdoor temperature greater than...",
+          "nl": "Buiten temperatuur groter dan..."
         },
         "titleFormatted": {
-          "en": "Outdoor temperature greater than [[temp]]°C"
+          "en": "Outdoor temperature greater than [[temp]]°C",
+          "nl": "Buiten temperatuur groter dan [[temp]]°C"
         },
         "args": [
           {
             "type": "number",
             "name": "temp",
             "placeholder": {
-              "en": "0"
+              "en": "0",
+              "nl": "0"
             },
             "min": -50,
             "max": 50,
@@ -76,14 +91,16 @@
       {
         "id": "boiler_lastcode_changed",
         "title": {
-          "en": "Boiler last code changed"
+          "en": "Heatpum last code changed",
+          "nl": "Warmtepomp laatste error veranderd"
         },
         "tokens": [
           {
             "type": "string",
             "name": "boiler_lastcode",
             "title": {
-              "en": "Last code"
+              "en": "Last code",
+              "nl": "Laatste error"
             },
             "example": {
               "en": "A01 (5448)"
@@ -99,13 +116,14 @@
         ]
       },
       {
-        "id": "boiler_wwcurtemp_less_than",
+        "id": "boiler_dhw_curtemp_less_than",
         "title": {
-          "en": "Tap water temp less than"
+          "en": "Tap water temp less than",
+          "nl": "Drinkwater temperatuur minder dan"
         },
         "titleFormatted": {
-          "en": "Tap water temp less than [[wwcurtemp]]°C",
-          "sv": "Varmvattentemp lägre än [[wwcurtemp]]°C"
+          "en": "Tap water temp less than [[boiler_dhw_curtemp]]°C",
+          "nl": "Drinkwater temperatuur minder dan [[boiler_dhw_curtemp]]°C"
         },
         "args": [
           {
@@ -115,7 +133,7 @@
           },
           {
             "type": "range",
-            "name": "wwcurtemp",
+            "name": "boiler_dhw_curtemp",
             "min": 0,
             "max": 100,
             "step": 1
@@ -124,7 +142,7 @@
         "tokens": [
           {
             "type": "number",
-            "name": "wwcurtemp",
+            "name": "boiler_dhw_curtemp",
             "title": {
               "en": "Temperature"
             },
@@ -137,17 +155,20 @@
       {
         "id": "thermostat_hc1_hpoperatingstate_changed",
         "title": {
-          "en": "Heatpump operating state changed"
+          "en": "Heatpump operating state changed",
+          "nl": "Warmtepomp operationele status veranderd"
         },
         "tokens": [
           {
             "type": "string",
             "name": "thermostat_hc1_hpoperatingstate",
             "title": {
-              "en": "Operating state"
+              "en": "Operating state",
+              "nl": "Operationele status"
             },
             "example": {
-              "en": "Heating"
+              "en": "Heating",
+              "nl": "Verwarmen"
             }
           }
         ],
@@ -168,15 +189,14 @@
       },
       "class": "heater",
       "capabilities": [
+        "boiler_outdoortemp",
+        "boiler_dhw_curtemp",
+        "boiler_dhw_settemp",
         "boiler_curflowtemp",
         "boiler_rettemp",
-        "boiler_hpbrinein",
-        "boiler_hpbrineout",
-        "boiler_hpbrinepumpspd",
-        "boiler_hpcircspd",
-        "boiler_hpcompspd",
-        "boiler_wwcurtemp",
-        "boiler_lastcode"
+        "boiler_syspress",
+        "boiler_metertotal",
+        "measure_power"
       ],
       "platforms": [
         "local"
@@ -217,7 +237,8 @@
           "type": "group",
           "label": {
             "en": "Server Settings",
-            "sv": "Serverinställningar"
+            "sv": "Serverinställningar",
+            "nl": "Server instellingen"
           },
           "children": [
             {
@@ -225,7 +246,8 @@
               "type": "text",
               "label": {
                 "en": "Network Adddress",
-                "sv": "Network Adddress"
+                "sv": "Network Adddress",
+                "nl": "Network Adddress"
               },
               "value": "ems-esp.local"
             },
@@ -234,11 +256,13 @@
               "type": "text",
               "label": {
                 "en": "Access Token",
-                "sv": "Access Token"
+                "sv": "Access Token",
+                "nl": "Access Token"
               },
               "hint": {
                 "en": "Found in EMS-ESP web interface, under Security and Manage Users",
-                "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare"
+                "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare",
+                "nl": "Kan je vinden in de EMS-ESP web interface, bij Security > Manage Users"
               },
               "value": ""
             },
@@ -247,9 +271,10 @@
               "type": "number",
               "label": {
                 "en": "Poll intervall in ms",
-                "sv": "Poll intervall i ms"
+                "sv": "Poll intervall i ms",
+                "nl": "Pol interval in ms"
               },
-              "value": 10000
+              "value": 5000
             }
           ]
         }
@@ -262,9 +287,7 @@
       "class": "thermostat",
       "capabilities": [
         "target_temperature",
-        "measure_temperature",
-        "thermostat_dampedoutdoortemp",
-        "thermostat_hc1_hpoperatingstate"
+        "measure_temperature"
       ],
       "capabilitiesOptions": {
         "target_temperature": {
@@ -311,7 +334,8 @@
           "type": "group",
           "label": {
             "en": "Server Settings",
-            "sv": "Serverinställningar"
+            "sv": "Serverinställningar",
+            "nl": "Server instellingen"
           },
           "children": [
             {
@@ -319,7 +343,8 @@
               "type": "text",
               "label": {
                 "en": "Network Adddress",
-                "sv": "Network Adddress"
+                "sv": "Network Adddress",
+                "nl": "Network Adddress"
               },
               "value": "ems-esp.local"
             },
@@ -328,11 +353,13 @@
               "type": "text",
               "label": {
                 "en": "Access Token",
-                "sv": "Access Token"
+                "sv": "Access Token",
+                "nl": "Access Token"
               },
               "hint": {
                 "en": "Found in EMS-ESP web interface, under Security and Manage Users",
-                "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare"
+                "sv": "Finns i EMS-ESP webb gränssnitt, under Säkerhet och Användare",
+                "nl": "Kan je vinden in de EMS-ESP web interface, bij Security > Manage Users"
               },
               "value": ""
             },
@@ -341,7 +368,8 @@
               "type": "number",
               "label": {
                 "en": "Poll intervall in ms",
-                "sv": "Poll intervall i ms"
+                "sv": "Poll intervall i ms",
+                "nl": "Pol interval in ms"
               },
               "value": 5000
             }
@@ -351,11 +379,29 @@
     }
   ],
   "capabilities": {
+    "boiler_curburnpow": {
+      "type": "number",
+      "title": {
+        "en": "Actual modulation",
+        "nl": "Modulatie"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "%"
+      },
+      "min": 0,
+      "max": 100,
+      "decimals": 0,
+      "insights": true,
+      "icon": "/assets/pump.svg"
+    },
     "boiler_curflowtemp": {
       "type": "number",
       "title": {
         "en": "Flow temp",
-        "sv": "Framledningstemp"
+        "sv": "Framledningstemp",
+        "nl": "Flow temperatuur"
       },
       "getable": true,
       "setable": false,
@@ -366,11 +412,11 @@
       "insights": true,
       "icon": "/assets/thermometer.svg"
     },
-    "boiler_hpbrinein": {
+    "boiler_dhw_curtemp": {
       "type": "number",
       "title": {
-        "en": "Brine circuit in",
-        "sv": "Köldbärare in"
+        "en": "Tank temperature",
+        "nl": "Boiler temperatuur"
       },
       "getable": true,
       "setable": false,
@@ -381,11 +427,11 @@
       "insights": true,
       "icon": "/assets/thermometer.svg"
     },
-    "boiler_hpbrineout": {
+    "boiler_dhw_settemp": {
       "type": "number",
       "title": {
-        "en": "Brine circuit out",
-        "sv": "Köldbärare ut"
+        "en": "Tank setpoint",
+        "nl": "Boiler doel temperatuur"
       },
       "getable": true,
       "setable": false,
@@ -395,74 +441,54 @@
       "decimals": 1,
       "insights": true,
       "icon": "/assets/thermometer.svg"
-    },
-    "boiler_hpbrinepumpspd": {
-      "type": "number",
-      "title": {
-        "en": "Brine pump speed",
-        "sv": "Köldbärarpump hastighet"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "%"
-      },
-      "min": 0,
-      "max": 100,
-      "decimals": 0,
-      "insights": true,
-      "icon": "/assets/pump.svg"
-    },
-    "boiler_hpcircspd": {
-      "type": "number",
-      "title": {
-        "en": "Circulation pump speed",
-        "sv": "Cirkulationspump hastighet"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "%"
-      },
-      "min": 0,
-      "max": 100,
-      "decimals": 0,
-      "insights": true,
-      "icon": "/assets/pump.svg"
-    },
-    "boiler_hpcompspd": {
-      "type": "number",
-      "title": {
-        "en": "Compressor pump speed",
-        "sv": "Kompressorpump hastighet"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "%"
-      },
-      "min": 0,
-      "max": 100,
-      "decimals": 0,
-      "insights": true,
-      "icon": "/assets/pump.svg"
     },
     "boiler_lastcode": {
       "type": "string",
       "title": {
-        "en": "Last Code",
-        "sv": "Senaste kod"
+        "en": "Last Error Code",
+        "nl": "Laatste error code"
       },
       "getable": true,
       "setable": false,
       "insights": false,
       "icon": "/assets/error.svg"
     },
+    "boiler_metertotal": {
+      "type": "number",
+      "title": {
+        "en": "Meter total",
+        "nl": "Totaal verbruik"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 1,
+      "insights": true,
+      "icon": "/assets/energy.svg"
+    },
+    "boiler_outdoortemp": {
+      "type": "number",
+      "title": {
+        "en": "Outdoor temperature",
+        "nl": "Buiten temperatuur"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "°C"
+      },
+      "decimals": 1,
+      "insights": true,
+      "icon": "/assets/thermometer.svg"
+    },
     "boiler_rettemp": {
       "type": "number",
       "title": {
         "en": "Return temp",
-        "sv": "Returtemp"
+        "sv": "Returtemp",
+        "nl": "Return temperatuur"
       },
       "getable": true,
       "setable": false,
@@ -473,42 +499,20 @@
       "insights": true,
       "icon": "/assets/thermometer.svg"
     },
-    "boiler_wwcurtemp": {
+    "boiler_syspress": {
       "type": "number",
       "title": {
-        "en": "Tap water temp",
-        "sv": "Varmvatten temp"
+        "en": "System pressure",
+        "nl": "Systeem druk"
       },
       "getable": true,
       "setable": false,
       "units": {
-        "en": "°C"
+        "en": "Bar"
       },
       "decimals": 1,
       "insights": true,
-      "icon": "/assets/thermometer.svg"
-    },
-    "thermostat_dampedoutdoortemp": {
-      "type": "number",
-      "title": {
-        "en": "Outdoor Temp"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "°C"
-      },
-      "decimals": 1,
-      "icon": "/assets/thermometer.svg"
-    },
-    "thermostat_hc1_hpoperatingstate": {
-      "type": "string",
-      "title": {
-        "en": "Operating State"
-      },
-      "getable": true,
-      "setable": false,
-      "icon": "/assets/state.svg"
+      "icon": "/assets/pressure.svg"
     }
   }
 }

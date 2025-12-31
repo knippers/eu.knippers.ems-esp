@@ -2,7 +2,8 @@
   "type": "number",
   "title": {
     "en": "Return temp",
-    "sv": "Returtemp"
+    "sv": "Returtemp",
+    "nl": "Return temperatuur"
   },
   "getable": true,
   "setable": false,

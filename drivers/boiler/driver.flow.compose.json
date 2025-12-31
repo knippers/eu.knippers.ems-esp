@@ -3,14 +3,16 @@
     {
       "id": "boiler_lastcode_changed",
       "title": {
-        "en": "Boiler last code changed"
+        "en": "Heatpum last code changed",
+        "nl": "Warmtepomp laatste error veranderd"
       },
       "tokens": [
         {
           "type": "string",
           "name": "boiler_lastcode",
           "title": {
-            "en": "Last code"
+            "en": "Last code",
+            "nl": "Laatste error"
           },
           "example": {
             "en": "A01 (5448)"
@@ -19,18 +21,19 @@
       ]
     },
     {
-      "id": "boiler_wwcurtemp_less_than",
+      "id": "boiler_dhw_curtemp_less_than",
       "title": {
-        "en": "Tap water temp less than"
+        "en": "Tap water temp less than",
+        "nl": "Drinkwater temperatuur minder dan"
       },
       "titleFormatted": {
-        "en": "Tap water temp less than [[wwcurtemp]]°C",
-        "sv": "Varmvattentemp lägre än [[wwcurtemp]]°C"
+        "en": "Tap water temp less than [[boiler_dhw_curtemp]]°C",
+        "nl": "Drinkwater temperatuur minder dan [[boiler_dhw_curtemp]]°C"
       },
       "args": [
         {
           "type": "range",
-          "name": "wwcurtemp",
+          "name": "boiler_dhw_curtemp",
           "min": 0,
           "max": 100,
           "step": 1
@@ -39,7 +42,7 @@
       "tokens": [
         {
           "type": "number",
-          "name": "wwcurtemp",
+          "name": "boiler_dhw_curtemp",
           "title": {
             "en": "Temperature"
           },

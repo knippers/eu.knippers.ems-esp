@@ -4,18 +4,21 @@
   },
   "class": "heater",
   "capabilities": [
+    "boiler_outdoortemp",
+    "boiler_dhw_curtemp",
+    "boiler_dhw_settemp",
     "boiler_curflowtemp",
     "boiler_rettemp",
-    "boiler_hpbrinein",
-    "boiler_hpbrineout",
-    "boiler_hpbrinepumpspd",
-    "boiler_hpcircspd",
-    "boiler_hpcompspd",
-    "boiler_wwcurtemp",
-    "boiler_lastcode"
+    "boiler_syspress",
+    "boiler_metertotal",
+    "measure_power"
   ],
-  "platforms": ["local"],
-  "connectivity": ["lan"],
+  "platforms": [
+    "local"
+  ],
+  "connectivity": [
+    "lan"
+  ],
   "images": {
     "small": "{{driverAssetsPath}}/images/small.png",
     "large": "{{driverAssetsPath}}/images/large.png",
@@ -24,13 +27,19 @@
   "pair": [
     {
       "id": "pair",
-      "navigation": { "next": "list_devices" }
+      "navigation": {
+        "next": "list_devices"
+      }
     },
     {
       "id": "list_devices",
       "template": "list_devices",
-      "navigation": { "next": "add_devices" },
-      "options": { "singular": true }
+      "navigation": {
+        "next": "add_devices"
+      },
+      "options": {
+        "singular": true
+      }
     },
     {
       "id": "add_devices",

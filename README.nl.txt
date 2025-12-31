@@ -1,1 +1,1 @@
-Deze app voegt ondersteuning toe voor apparaten die via EMS-ESP (b.v. met BBQKees device) uitgelezen en bijgewerkt kunnen worden.
+Deze app voegt ondersteuning toe voor apparaten die via EMS-ESP (b.v. met BBQKees Gateways) uitgelezen en bijgewerkt kunnen worden.

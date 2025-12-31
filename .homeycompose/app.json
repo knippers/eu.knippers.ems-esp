@@ -7,7 +7,8 @@
     "local"
   ],
   "name": {
-    "en": "EMS-ESP"
+    "en": "EMS-ESP",
+    "nl": "EMS-ESP"
   },
   "description": {
     "en": "Adds support for EMS-ESP devices.",
@@ -34,5 +35,7 @@
     "en": [
       "bbqkees boiler ems-esp thermostat"
     ]
-  }
+  },
+  "source": "https://github.com/knippers/eu.knippers.ems-esp",
+  "support": "https://github.com/knippers/eu.knippers.ems-esp/issues"
 }

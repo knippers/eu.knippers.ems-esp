@@ -1,0 +1,13 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Meter total",
+    "nl": "Totaal verbruik"
+  },
+  "getable": true,
+  "setable": false,
+  "units": { "en": "kWh" },
+  "decimals": 1,
+  "insights": true,
+  "icon": "/assets/energy.svg"
+}

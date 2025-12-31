@@ -1,8 +1,8 @@
 {
   "type": "string",
   "title": {
-    "en": "Last Code",
-    "sv": "Senaste kod"
+    "en": "Last Error Code",
+    "nl": "Laatste error code"
   },
   "getable": true,
   "setable": false,

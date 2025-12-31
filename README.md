@@ -15,26 +15,18 @@ homey app run
 ## Tested on
 
 - Homey Pro (early 2023)
-- IVT Geo 600 heat pump
+- Bosch 5800i
+- EMS-ESP 2.7.2
 
 ## Implemented entities
 
 ### Thermostat
 
 - target_temperature (read/write)
-- dampedoutdoortemp (read)
-- hc1_hpoperatingstate (read)
 
 ### Boiler
 
 - curflowtemp (read)
-- hpbrinein (read)
-- hpbrineout (read)
-- hpbrinepumpspd (read)
-- hpcircspd (read)
-- hpcompspd (read)
-- lastcode (read)
-- rettemp (read)
-- wwcurtemp (read)
+
 
 ![Screenshot of the Homey Android App](./assets/images/screenshot01.jpeg)

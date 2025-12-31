@@ -3,17 +3,20 @@
     {
       "id": "thermostat_hc1_hpoperatingstate_changed",
       "title": {
-        "en": "Heatpump operating state changed"
+        "en": "Heatpump operating state changed",
+        "nl": "Warmtepomp operationele status veranderd"
       },
       "tokens": [
         {
           "type": "string",
           "name": "thermostat_hc1_hpoperatingstate",
           "title": {
-            "en": "Operating state"
+            "en": "Operating state",
+            "nl": "Operationele status"
           },
           "example": {
-            "en": "Heating"
+            "en": "Heating",
+            "nl": "Verwarmen"
           }
         }
       ]

@@ -1,8 +1,8 @@
 {
   "type": "number",
   "title": {
-    "en": "Tap water temp",
-    "sv": "Varmvatten temp"
+    "en": "Tank setpoint",
+    "nl": "Boiler doel temperatuur"
   },
   "getable": true,
   "setable": false,

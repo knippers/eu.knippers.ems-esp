@@ -1,0 +1,13 @@
+{
+  "type": "number",
+  "title": {
+    "en": "System pressure",
+    "nl": "Systeem druk"
+  },
+  "getable": true,
+  "setable": false,
+  "units": { "en": "Bar" },
+  "decimals": 1,
+  "insights": true,
+  "icon": "/assets/pressure.svg"
+}

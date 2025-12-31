@@ -1,5 +1,5 @@
 {
-  "name": "se.assermark.ems-esp",
+  "name": "eu.knippers.ems-esp",
   "version": "1.0.0",
   "main": "app.ts",
   "scripts": {
