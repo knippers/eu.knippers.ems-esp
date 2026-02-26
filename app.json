@@ -67,10 +67,12 @@
       },
       {
         "title": {
-          "en": "Outdoor temperature less than..."
+          "en": "Outdoor temperature less than...",
+          "nl": "Buitentemperatuur minder dan..."
         },
         "titleFormatted": {
-          "en": "Outdoor temperature less than [[temp]]°C"
+          "en": "Outdoor temperature less than [[temp]]°C",
+          "nl": "Buitemtemperatuur minder dan [[temp]]°C"
         },
         "args": [
           {
@@ -85,6 +87,59 @@
           }
         ],
         "id": "outdoor-temp-less-than"
+      }
+    ],
+    "actions": [
+      {
+        "title": {
+          "en": "Set SG-Ready state to...",
+          "nl": "Zet de SG-Ready status naar..."
+        },
+        "titleFormatted": {
+          "en": "Set the SG-Ready state to [[status]]",
+          "nl": "Zet de SG-Ready status naar [[status]]"
+        },
+        "args": [
+          {
+            "type": "dropdown",
+            "name": "status",
+            "placeholder": {
+              "en": "normal",
+              "nl": "normal"
+            },
+            "values": [
+              {
+                "id": "normal",
+                "label": {
+                  "en": "Normal",
+                  "nl": "Normaal"
+                }
+              },
+              {
+                "id": "boost",
+                "label": {
+                  "en": "Boost",
+                  "nl": "Boost"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off",
+                  "nl": "Uit"
+                }
+              },
+              {
+                "id": "maximum",
+                "Label": {
+                  "en": "Maximum",
+                  "nl": "Maximaal"
+                }
+              }
+            ]
+          }
+        ],
+        "id": "set-smartgrid"
       }
     ],
     "triggers": [
@@ -195,9 +250,56 @@
         "boiler_curflowtemp",
         "boiler_rettemp",
         "boiler_syspress",
-        "boiler_metertotal",
-        "measure_power"
+        "meter_power",
+        "meter_power.eheater",
+        "meter_power.compressor",
+        "meter_power.heating",
+        "meter_power.dhw",
+        "meter_power.cool",
+        "smartgrid"
       ],
+      "energy": {
+        "cumulative": true,
+        "cumulativeImportedCapability": "meter_power"
+      },
+      "capabilitiesOptions": {
+        "meter_power": {
+          "title": {
+            "en": "Total power",
+            "nl": "Totaal verbruik"
+          }
+        },
+        "meter_power.eheater": {
+          "title": {
+            "en": "Total power e-heater",
+            "nl": "Totaal verbruik e-heater"
+          }
+        },
+        "meter_power.compressor": {
+          "title": {
+            "en": "Total power heatpump",
+            "nl": "Totaal verbruik warmtepomp"
+          }
+        },
+        "meter_power.heating": {
+          "title": {
+            "en": "Total power heating",
+            "nl": "Totaal verbruik verwarmen"
+          }
+        },
+        "meter_power.dhw": {
+          "title": {
+            "en": "Total power hot water",
+            "nl": "Totaal verbruik heet water"
+          }
+        },
+        "meter_power.cool": {
+          "title": {
+            "en": "Total power cooling",
+            "nl": "Totaal verbruik koelen"
+          }
+        }
+      },
       "platforms": [
         "local"
       ],
@@ -379,6 +481,21 @@
     }
   ],
   "capabilities": {
+    "boiler_ metereheat": {
+      "type": "number",
+      "title": {
+        "en": "External heater total",
+        "nl": "Totaal verbruik externe verwarming"
+      },
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "kWh"
+      },
+      "decimals": 1,
+      "insights": true,
+      "icon": "/assets/energy.svg"
+    },
     "boiler_curburnpow": {
       "type": "number",
       "title": {
@@ -453,21 +570,6 @@
       "insights": false,
       "icon": "/assets/error.svg"
     },
-    "boiler_metertotal": {
-      "type": "number",
-      "title": {
-        "en": "Meter total",
-        "nl": "Totaal verbruik"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "kWh"
-      },
-      "decimals": 1,
-      "insights": true,
-      "icon": "/assets/energy.svg"
-    },
     "boiler_outdoortemp": {
       "type": "number",
       "title": {
@@ -513,6 +615,47 @@
       "decimals": 1,
       "insights": true,
       "icon": "/assets/pressure.svg"
+    },
+    "smartgrid": {
+      "type": "enum",
+      "title": {
+        "en": "SG-Ready mode",
+        "nl": "SG-Ready modus"
+      },
+      "getable": true,
+      "setable": true,
+      "insights": true,
+      "icon": "/assets/sg-ready.svg",
+      "values": [
+        {
+          "id": "normal",
+          "title": {
+            "en": "Normal operation",
+            "nl": "Standaard werking"
+          }
+        },
+        {
+          "id": "boost",
+          "title": {
+            "en": "Recommended On (Boost)",
+            "nl": "Aanbevolen aan (boost)"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Blocked Operation (Off)",
+            "nl": "Geblokeerd (off)"
+          }
+        },
+        {
+          "id": "maximum",
+          "title": {
+            "en": "Forced On (Maximum)",
+            "nl": "Geforceerd aan (maximum)"
+          }
+        }
+      ]
     }
   }
 }

@@ -10,9 +10,38 @@
     "boiler_curflowtemp",
     "boiler_rettemp",
     "boiler_syspress",
-    "boiler_metertotal",
-    "measure_power"
+    "meter_power",
+    "meter_power.eheater",
+    "meter_power.compressor",
+    "meter_power.heating",
+    "meter_power.dhw",
+    "meter_power.cool",
+    "smartgrid"
   ],
+  "energy": {
+    "cumulative": true,
+    "cumulativeImportedCapability": "meter_power"
+  },
+  "capabilitiesOptions": {
+    "meter_power": {
+      "title": { "en": "Total power", "nl": "Totaal verbruik" }
+    },
+    "meter_power.eheater": {
+      "title": { "en": "Total power e-heater", "nl": "Totaal verbruik e-heater" }
+    },    
+    "meter_power.compressor": {
+      "title": { "en": "Total power heatpump", "nl": "Totaal verbruik warmtepomp" }
+    },    
+    "meter_power.heating": {
+      "title": { "en": "Total power heating", "nl": "Totaal verbruik verwarmen" }
+    },    
+    "meter_power.dhw": {
+      "title": { "en": "Total power hot water", "nl": "Totaal verbruik heet water" }
+    },    
+    "meter_power.cool": {
+      "title": { "en": "Total power cooling", "nl": "Totaal verbruik koelen" }
+    }
+  },
   "platforms": [
     "local"
   ],

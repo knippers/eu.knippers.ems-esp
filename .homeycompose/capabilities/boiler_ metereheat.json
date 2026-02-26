@@ -1,8 +1,8 @@
 {
   "type": "number",
   "title": {
-    "en": "Meter total",
-    "nl": "Totaal verbruik"
+    "en": "External heater total",
+    "nl": "Totaal verbruik externe verwarming"
   },
   "getable": true,
   "setable": false,

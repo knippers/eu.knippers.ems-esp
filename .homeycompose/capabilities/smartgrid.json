@@ -1,0 +1,41 @@
+{
+    "type": "enum",
+    "title": {
+        "en": "SG-Ready mode",
+        "nl": "SG-Ready modus"
+    },
+    "getable": true,
+    "setable": true,
+    "insights": true,
+    "icon": "/assets/sg-ready.svg",
+    "values": [
+        {
+            "id": "normal",
+            "title": {
+                "en": "Normal operation",
+                "nl": "Standaard werking"
+            }
+        },
+        {
+            "id": "boost",
+            "title": {
+                "en": "Recommended On (Boost)",
+                "nl": "Aanbevolen aan (boost)"
+            }
+        },
+        {
+            "id": "off",
+            "title": {
+                "en": "Blocked Operation (Off)",
+                "nl": "Geblokeerd (off)"
+            }
+        },
+        {
+            "id": "maximum",
+            "title": {
+                "en": "Forced On (Maximum)",
+                "nl": "Geforceerd aan (maximum)"
+            }
+        }
+    ]
+}

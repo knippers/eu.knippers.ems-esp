@@ -1,0 +1,26 @@
+{
+  "title": {
+    "en": "Set SG-Ready state to...",
+    "nl": "Zet de SG-Ready status naar..."
+  },
+  "titleFormatted": {
+    "en": "Set the SG-Ready state to [[status]]",
+    "nl": "Zet de SG-Ready status naar [[status]]"
+  },
+  "args": [
+    {
+      "type": "dropdown",
+      "name": "status",
+      "placeholder": {
+        "en": "normal",
+        "nl": "normal"
+      },
+      "values": [
+        { "id": "normal", "label": { "en": "Normal", "nl": "Normaal" } },
+        { "id": "boost", "label": { "en": "Boost", "nl": "Boost" } },
+        { "id": "off", "label": { "en": "Off", "nl": "Uit" } },
+        { "id": "maximum", "Label": { "en": "Maximum", "nl": "Maximaal"} }
+      ]
+    }
+  ]
+}

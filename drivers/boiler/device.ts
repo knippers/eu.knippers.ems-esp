@@ -31,6 +31,14 @@ export class BoilerDevice extends Homey.Device {
       ?.trigger(this, { boiler_dhw_curtemp: newData.dhw.curtemp }, newData);
   }
 
+  private getSmartGrid(data: BoilerData) {
+
+     if( data.hpin1 === "off" && data.hpin2 === "off" && data.hpin3 === "off" && data.hpin4 === "off" )
+      return "normal";
+
+    return "normal";
+  }
+
   private async updateCapabilityValues(data: BoilerData) {
     return setCapabilityValues(this, [
       ["boiler_curflowtemp", data.curflowtemp],
@@ -38,10 +46,16 @@ export class BoilerDevice extends Homey.Device {
       ["boiler_dhw_settemp", data.dhw.settemp],
       ["boiler_outdoortemp", data.outdoortemp],
       ["boiler_rettemp", data.rettemp],
-      ["boiler_lastcode", formatLastCode(parseLastCode(data.lastcode))],
+      ["boiler_lastcode", data.lastcode],
       ["boiler_rettemp", data.rettemp],
-      ["boiler_metertotal", data.metertotal],
-      ["measure_power", data.metertotal]
+      ["boiler_syspress", data.syspress],
+      ["meter_power", data.metertotal],
+      ["meter_power.eheater", data.metereheat],
+      ["meter_power.compressor", data.metercomp],
+      ["meter_power.heating", data.meterheat],
+      ["meter_power.dhw", data.dhw.meter],
+      ["meter_power.cool", data.metercool],
+      ["smartgrid", this.getSmartGrid(data)]
     ]);
   }
 
