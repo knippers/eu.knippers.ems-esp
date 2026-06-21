@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Solarpanels active",
+    "nl": "Zonnepanelen actief"
+  },
+  "uiGroup": "misc",
+  "uiComponent": "toggle",
+  "getable": true,
+  "setable": true,
+  "icon": "/assets/solarpanel.svg"
+}

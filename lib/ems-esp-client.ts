@@ -76,4 +76,8 @@ export class EmsEspClient {
   public async getBoilerData(): Promise<BoilerData> {
     return this.get<BoilerData>("api/boiler");
   }
+
+  public async setBoilerValue(cmd: string, data: string | number) {
+    await this.post("api/boiler", { cmd, data });
+  }
 }

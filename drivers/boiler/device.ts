@@ -8,8 +8,20 @@ import {
 } from "../../lib/utils";
 import { BoilerData } from "../../lib/types";
 
+// hpin2opt/hpin4opt are EMS-ESP option bitstrings. Only the first character
+// reflects the on/off state we care about here; the rest of the digits are
+// fixed configuration on this install and must be preserved as-is.
+function isOptionOn(value: string | undefined): boolean {
+  return value?.charAt(0) === "1";
+}
+
+function withOptionState(value: string, on: boolean): string {
+  return `${on ? "1" : "0"}${value.slice(1)}`;
+}
+
 export class BoilerDevice extends Homey.Device {
   private stopPolling: (() => void) | null = null;
+  private lastData: BoilerData | null = null;
 
   private get client() {
     return new EmsEspClient(
@@ -66,7 +78,10 @@ export class BoilerDevice extends Homey.Device {
       ["boiler_heating_total", data.meterheat],
       ["boiler_dhw_total", data.dhw.meter],
       ["boiler_cool_total", data.metercool],
-      ["boiler_compressor_activity", this.getCompressorActivityLabel(data.hpactivity)]
+      ["boiler_compressor_activity", this.getCompressorActivityLabel(data.hpactivity)],
+      ["boiler_hpcurrpower", data.hpcurrpower],
+      ["boiler_hpin4opt", isOptionOn(data.hpin4opt)],
+      ["boiler_hpin2opt", isOptionOn(data.hpin2opt)]
     ]);
   }
 
@@ -83,6 +98,7 @@ export class BoilerDevice extends Homey.Device {
           // Automatically restart polling after the interval to recover from errors.          
           setTimeout(() => this.startPolling(), this.intervalMs * 2);
         } else if (res) {
+          this.lastData = res;
           await this.updateCapabilityValues(res).catch(this.error);
           await this.setAvailable().catch(this.error);
           await this.triggerFlows(res).catch(this.error);
@@ -92,6 +108,28 @@ export class BoilerDevice extends Homey.Device {
   }
 
   async onInit() {
+    this.registerCapabilityListener("boiler_hpin4opt", async (value: boolean) => {
+      const current = this.lastData?.hpin4opt;
+      if (current === undefined) {
+        this.error("Cannot update Solar Active, hpin4opt value not known yet");
+        return;
+      }
+      const data = withOptionState(current, value);
+      this.log(`Setting Solar Active to ${value} (hpin4opt=${data})`);
+      await this.client.setBoilerValue("hpin4opt", data).catch(this.error);
+    });
+
+    this.registerCapabilityListener("boiler_hpin2opt", async (value: boolean) => {
+      const current = this.lastData?.hpin2opt;
+      if (current === undefined) {
+        this.error("Cannot update Block Heatpump, hpin2opt value not known yet");
+        return;
+      }
+      const data = withOptionState(current, value);
+      this.log(`Setting Block Heatpump to ${value} (hpin2opt=${data})`);
+      await this.client.setBoilerValue("hpin2opt", data).catch(this.error);
+    });
+
     this.startPolling();
   }
 

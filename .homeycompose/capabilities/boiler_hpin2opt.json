@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Block heatpump",
+    "nl": "Warmtepomp blokkeren"
+  },
+  "uiGroup": "misc",
+  "uiComponent": "toggle",
+  "getable": true,
+  "setable": true,
+  "icon": "/assets/pump.svg"
+}

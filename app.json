@@ -204,7 +204,10 @@
         "boiler_rettemp",
         "boiler_syspress",
         "meter_power",
-        "boiler_compressor_activity"
+        "boiler_compressor_activity",
+        "boiler_hpcurrpower",
+        "boiler_hpin4opt",
+        "boiler_hpin2opt"
       ],
       "ui": {
         "groups": {
@@ -548,6 +551,45 @@
       "getable": true,
       "setable": false,
       "icon": "/assets/energy.svg"
+    },
+    "boiler_hpcurrpower": {
+      "type": "number",
+      "title": {
+        "en": "Current power",
+        "nl": "Huidig vermogen"
+      },
+      "uiGroup": "power",
+      "getable": true,
+      "setable": false,
+      "units": {
+        "en": "W"
+      },
+      "insights": true,
+      "icon": "/assets/energy.svg"
+    },
+    "boiler_hpin2opt": {
+      "type": "boolean",
+      "title": {
+        "en": "Block heatpump",
+        "nl": "Warmtepomp blokkeren"
+      },
+      "uiGroup": "misc",
+      "uiComponent": "toggle",
+      "getable": true,
+      "setable": true,
+      "icon": "/assets/pump.svg"
+    },
+    "boiler_hpin4opt": {
+      "type": "boolean",
+      "title": {
+        "en": "Solarpanels active",
+        "nl": "Zonnepanelen actief"
+      },
+      "uiGroup": "misc",
+      "uiComponent": "toggle",
+      "getable": true,
+      "setable": true,
+      "icon": "/assets/solarpanel.svg"
     },
     "boiler_lastcode": {
       "type": "string",
