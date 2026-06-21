@@ -5,6 +5,7 @@
     "sv": "Returtemp",
     "nl": "Return temperatuur"
   },
+  "uiGroup": "temperature",
   "getable": true,
   "setable": false,
   "units": { "en": "°C" },

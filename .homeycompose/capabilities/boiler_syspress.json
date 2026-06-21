@@ -4,6 +4,7 @@
     "en": "System pressure",
     "nl": "Systeem druk"
   },
+  "uiGroup": "misc",
   "getable": true,
   "setable": false,
   "units": { "en": "Bar" },

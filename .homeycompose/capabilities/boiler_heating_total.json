@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total power heating",
+    "nl": "Totaal verbruik verwarmen"
+  },
+  "units": {
+    "en": "kWh"
+  },
+  "uiGroup": "power",
+  "insights": true,
+  "chartType": "stepLine",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/energy.svg"
+}

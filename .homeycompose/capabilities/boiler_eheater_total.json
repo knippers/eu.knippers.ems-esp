@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total power e-heater",
+    "nl": "Totaal verbruik e-heater"
+  },
+  "units": {
+    "en": "kWh"
+  },
+  "uiGroup": "power",
+  "insights": true,
+  "chartType": "stepLine",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/energy.svg"
+}

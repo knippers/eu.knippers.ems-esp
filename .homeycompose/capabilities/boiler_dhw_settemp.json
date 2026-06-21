@@ -4,6 +4,7 @@
     "en": "Tank setpoint",
     "nl": "Boiler doel temperatuur"
   },
+  "uiGroup": "temperature",
   "getable": true,
   "setable": false,
   "units": { "en": "°C" },

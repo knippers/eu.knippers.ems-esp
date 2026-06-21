@@ -2,9 +2,9 @@
   "type": "number",
   "title": {
     "en": "Flow temp",
-    "sv": "Framledningstemp",
     "nl": "Flow temperatuur"
   },
+  "uiGroup": "temperature",
   "getable": true,
   "setable": false,
   "units": { "en": "°C" },

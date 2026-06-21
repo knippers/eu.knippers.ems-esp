@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total power compressor",
+    "nl": "Totaal verbruik compressor"
+  },
+  "units": {
+    "en": "kWh"
+  },
+  "uiGroup": "power",
+  "insights": true,
+  "chartType": "stepLine",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/energy.svg"
+}

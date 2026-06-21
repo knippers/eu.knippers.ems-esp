@@ -4,6 +4,7 @@
     "en": "Tank temperature",
     "nl": "Boiler temperatuur"
   },
+  "uiGroup": "temperature",
   "getable": true,
   "setable": false,
   "units": { "en": "°C" },

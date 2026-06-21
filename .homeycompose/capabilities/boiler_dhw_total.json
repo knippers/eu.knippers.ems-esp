@@ -1,0 +1,16 @@
+{
+  "type": "number",
+  "title": {
+    "en": "Total power hot water",
+    "nl": "Totaal verbruik heet water"
+  },
+  "units": {
+    "en": "kWh"
+  },
+  "uiGroup": "power",
+  "insights": true,
+  "chartType": "stepLine",
+  "getable": true,
+  "setable": false,
+  "icon": "/assets/energy.svg"
+}

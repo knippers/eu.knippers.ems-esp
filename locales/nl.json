@@ -6,5 +6,14 @@
     "access_token": "Access Token voor admin",
     "access_token_hint": "Kan je vinden in de EMS-ESP web interface onder Security > Manage users. Schrijf toegang benodigd",
     "check_connection": "Controleer verbinding"
+  },
+  "compressor_activity": {
+    "off": "Uit",
+    "heating": "Verwarmen",
+    "cooling": "Koelen",
+    "hot_water": "Heet water",
+    "defrost": "Ontdooien",
+    "alarm": "Compressor alarm",
+    "unknown": "Onbekend"
   }
 }

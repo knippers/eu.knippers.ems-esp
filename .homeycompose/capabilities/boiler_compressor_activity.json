@@ -1,0 +1,12 @@
+  {
+    "type": "string",
+    "title": {
+      "en": "Compressor activity",
+      "nl": "Compressor activiteit"
+    },
+    "uiGroup": "misc",
+    "getable": true,
+    "setable": false,
+    "insights": true,
+    "icon": "/assets/state.svg"
+  }

@@ -89,59 +89,6 @@
         "id": "outdoor-temp-less-than"
       }
     ],
-    "actions": [
-      {
-        "title": {
-          "en": "Set SG-Ready state to...",
-          "nl": "Zet de SG-Ready status naar..."
-        },
-        "titleFormatted": {
-          "en": "Set the SG-Ready state to [[status]]",
-          "nl": "Zet de SG-Ready status naar [[status]]"
-        },
-        "args": [
-          {
-            "type": "dropdown",
-            "name": "status",
-            "placeholder": {
-              "en": "normal",
-              "nl": "normal"
-            },
-            "values": [
-              {
-                "id": "normal",
-                "label": {
-                  "en": "Normal",
-                  "nl": "Normaal"
-                }
-              },
-              {
-                "id": "boost",
-                "label": {
-                  "en": "Boost",
-                  "nl": "Boost"
-                }
-              },
-              {
-                "id": "off",
-                "label": {
-                  "en": "Off",
-                  "nl": "Uit"
-                }
-              },
-              {
-                "id": "maximum",
-                "Label": {
-                  "en": "Maximum",
-                  "nl": "Maximaal"
-                }
-              }
-            ]
-          }
-        ],
-        "id": "set-smartgrid"
-      }
-    ],
     "triggers": [
       {
         "id": "boiler_lastcode_changed",
@@ -244,60 +191,41 @@
       },
       "class": "heater",
       "capabilities": [
-        "boiler_outdoortemp",
+        "boiler_compressor_total",
+        "boiler_cool_total",
+        "boiler_curflowtemp",
         "boiler_dhw_curtemp",
         "boiler_dhw_settemp",
-        "boiler_curflowtemp",
+        "boiler_dhw_total",
+        "boiler_eheater_total",
+        "boiler_heating_total",
+        "boiler_lastcode",
+        "measure_temperature",
         "boiler_rettemp",
         "boiler_syspress",
         "meter_power",
-        "meter_power.eheater",
-        "meter_power.compressor",
-        "meter_power.heating",
-        "meter_power.dhw",
-        "meter_power.cool",
-        "smartgrid"
+        "boiler_compressor_activity"
       ],
-      "energy": {
-        "cumulative": true,
-        "cumulativeImportedCapability": "meter_power"
+      "ui": {
+        "groups": {
+          "power": {
+            "en": "Power",
+            "nl": "Energie"
+          },
+          "temperature": {
+            "en": "Temperature",
+            "nl": "Temperatuur"
+          },
+          "misc": {
+            "en": "Miscellaneous",
+            "nl": "Overig"
+          }
+        }
       },
-      "capabilitiesOptions": {
-        "meter_power": {
-          "title": {
-            "en": "Total power",
-            "nl": "Totaal verbruik"
-          }
-        },
-        "meter_power.eheater": {
-          "title": {
-            "en": "Total power e-heater",
-            "nl": "Totaal verbruik e-heater"
-          }
-        },
-        "meter_power.compressor": {
-          "title": {
-            "en": "Total power heatpump",
-            "nl": "Totaal verbruik warmtepomp"
-          }
-        },
-        "meter_power.heating": {
-          "title": {
-            "en": "Total power heating",
-            "nl": "Totaal verbruik verwarmen"
-          }
-        },
-        "meter_power.dhw": {
-          "title": {
-            "en": "Total power hot water",
-            "nl": "Totaal verbruik heet water"
-          }
-        },
-        "meter_power.cool": {
-          "title": {
-            "en": "Total power cooling",
-            "nl": "Totaal verbruik koelen"
-          }
+      "measure_temperature": {
+        "title": {
+          "en": "Outdoor temperature",
+          "nl": "Buitentemperatuur"
         }
       },
       "platforms": [
@@ -481,45 +409,57 @@
     }
   ],
   "capabilities": {
-    "boiler_ metereheat": {
-      "type": "number",
+    "boiler_compressor_activity": {
+      "type": "string",
       "title": {
-        "en": "External heater total",
-        "nl": "Totaal verbruik externe verwarming"
+        "en": "Compressor activity",
+        "nl": "Compressor activiteit"
       },
+      "uiGroup": "misc",
       "getable": true,
       "setable": false,
+      "insights": true,
+      "icon": "/assets/state.svg"
+    },
+    "boiler_compressor_total": {
+      "type": "number",
+      "title": {
+        "en": "Total power compressor",
+        "nl": "Totaal verbruik compressor"
+      },
       "units": {
         "en": "kWh"
       },
-      "decimals": 1,
+      "uiGroup": "power",
       "insights": true,
-      "icon": "/assets/energy.svg"
-    },
-    "boiler_curburnpow": {
-      "type": "number",
-      "title": {
-        "en": "Actual modulation",
-        "nl": "Modulatie"
-      },
+      "chartType": "stepLine",
       "getable": true,
       "setable": false,
-      "units": {
-        "en": "%"
+      "icon": "/assets/energy.svg"
+    },
+    "boiler_cool_total": {
+      "type": "number",
+      "title": {
+        "en": "Total power cooling",
+        "nl": "Totaal verbruik koelen"
       },
-      "min": 0,
-      "max": 100,
-      "decimals": 0,
+      "units": {
+        "en": "kWh"
+      },
+      "uiGroup": "power",
       "insights": true,
-      "icon": "/assets/pump.svg"
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/energy.svg"
     },
     "boiler_curflowtemp": {
       "type": "number",
       "title": {
         "en": "Flow temp",
-        "sv": "Framledningstemp",
         "nl": "Flow temperatuur"
       },
+      "uiGroup": "temperature",
       "getable": true,
       "setable": false,
       "units": {
@@ -535,6 +475,7 @@
         "en": "Tank temperature",
         "nl": "Boiler temperatuur"
       },
+      "uiGroup": "temperature",
       "getable": true,
       "setable": false,
       "units": {
@@ -550,6 +491,7 @@
         "en": "Tank setpoint",
         "nl": "Boiler doel temperatuur"
       },
+      "uiGroup": "temperature",
       "getable": true,
       "setable": false,
       "units": {
@@ -558,6 +500,54 @@
       "decimals": 1,
       "insights": true,
       "icon": "/assets/thermometer.svg"
+    },
+    "boiler_dhw_total": {
+      "type": "number",
+      "title": {
+        "en": "Total power hot water",
+        "nl": "Totaal verbruik heet water"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "uiGroup": "power",
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/energy.svg"
+    },
+    "boiler_eheater_total": {
+      "type": "number",
+      "title": {
+        "en": "Total power e-heater",
+        "nl": "Totaal verbruik e-heater"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "uiGroup": "power",
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/energy.svg"
+    },
+    "boiler_heating_total": {
+      "type": "number",
+      "title": {
+        "en": "Total power heating",
+        "nl": "Totaal verbruik verwarmen"
+      },
+      "units": {
+        "en": "kWh"
+      },
+      "uiGroup": "power",
+      "insights": true,
+      "chartType": "stepLine",
+      "getable": true,
+      "setable": false,
+      "icon": "/assets/energy.svg"
     },
     "boiler_lastcode": {
       "type": "string",
@@ -565,25 +555,11 @@
         "en": "Last Error Code",
         "nl": "Laatste error code"
       },
+      "uiGroup": "misc",
       "getable": true,
       "setable": false,
       "insights": false,
       "icon": "/assets/error.svg"
-    },
-    "boiler_outdoortemp": {
-      "type": "number",
-      "title": {
-        "en": "Outdoor temperature",
-        "nl": "Buiten temperatuur"
-      },
-      "getable": true,
-      "setable": false,
-      "units": {
-        "en": "°C"
-      },
-      "decimals": 1,
-      "insights": true,
-      "icon": "/assets/thermometer.svg"
     },
     "boiler_rettemp": {
       "type": "number",
@@ -592,6 +568,7 @@
         "sv": "Returtemp",
         "nl": "Return temperatuur"
       },
+      "uiGroup": "temperature",
       "getable": true,
       "setable": false,
       "units": {
@@ -607,6 +584,7 @@
         "en": "System pressure",
         "nl": "Systeem druk"
       },
+      "uiGroup": "misc",
       "getable": true,
       "setable": false,
       "units": {
@@ -615,47 +593,6 @@
       "decimals": 1,
       "insights": true,
       "icon": "/assets/pressure.svg"
-    },
-    "smartgrid": {
-      "type": "enum",
-      "title": {
-        "en": "SG-Ready mode",
-        "nl": "SG-Ready modus"
-      },
-      "getable": true,
-      "setable": true,
-      "insights": true,
-      "icon": "/assets/sg-ready.svg",
-      "values": [
-        {
-          "id": "normal",
-          "title": {
-            "en": "Normal operation",
-            "nl": "Standaard werking"
-          }
-        },
-        {
-          "id": "boost",
-          "title": {
-            "en": "Recommended On (Boost)",
-            "nl": "Aanbevolen aan (boost)"
-          }
-        },
-        {
-          "id": "off",
-          "title": {
-            "en": "Blocked Operation (Off)",
-            "nl": "Geblokeerd (off)"
-          }
-        },
-        {
-          "id": "maximum",
-          "title": {
-            "en": "Forced On (Maximum)",
-            "nl": "Geforceerd aan (maximum)"
-          }
-        }
-      ]
     }
   }
 }

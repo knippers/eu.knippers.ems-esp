@@ -4,42 +4,41 @@
   },
   "class": "heater",
   "capabilities": [
-    "boiler_outdoortemp",
+    "boiler_compressor_total",
+    "boiler_cool_total",
+    "boiler_curflowtemp",
     "boiler_dhw_curtemp",
     "boiler_dhw_settemp",
-    "boiler_curflowtemp",
+    "boiler_dhw_total",
+    "boiler_eheater_total",
+    "boiler_heating_total",
+    "boiler_lastcode",
+    "measure_temperature",
     "boiler_rettemp",
     "boiler_syspress",
     "meter_power",
-    "meter_power.eheater",
-    "meter_power.compressor",
-    "meter_power.heating",
-    "meter_power.dhw",
-    "meter_power.cool",
-    "smartgrid"
+    "boiler_compressor_activity"
   ],
-  "energy": {
-    "cumulative": true,
-    "cumulativeImportedCapability": "meter_power"
+  "ui": {
+    "groups": {
+      "power": {
+        "en": "Power",
+        "nl": "Energie"
+      },
+      "temperature": {
+        "en": "Temperature",
+        "nl": "Temperatuur"
+      },
+      "misc": {
+        "en": "Miscellaneous",
+        "nl": "Overig"
+      }
+    }
   },
-  "capabilitiesOptions": {
-    "meter_power": {
-      "title": { "en": "Total power", "nl": "Totaal verbruik" }
-    },
-    "meter_power.eheater": {
-      "title": { "en": "Total power e-heater", "nl": "Totaal verbruik e-heater" }
-    },    
-    "meter_power.compressor": {
-      "title": { "en": "Total power heatpump", "nl": "Totaal verbruik warmtepomp" }
-    },    
-    "meter_power.heating": {
-      "title": { "en": "Total power heating", "nl": "Totaal verbruik verwarmen" }
-    },    
-    "meter_power.dhw": {
-      "title": { "en": "Total power hot water", "nl": "Totaal verbruik heet water" }
-    },    
-    "meter_power.cool": {
-      "title": { "en": "Total power cooling", "nl": "Totaal verbruik koelen" }
+  "measure_temperature": {
+    "title": {
+      "en": "Outdoor temperature",
+      "nl": "Buitentemperatuur"
     }
   },
   "platforms": [

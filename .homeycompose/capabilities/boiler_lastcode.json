@@ -4,6 +4,7 @@
     "en": "Last Error Code",
     "nl": "Laatste error code"
   },
+  "uiGroup": "misc",
   "getable": true,
   "setable": false,
   "insights": false,

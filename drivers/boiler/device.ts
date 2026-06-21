@@ -31,12 +31,23 @@ export class BoilerDevice extends Homey.Device {
       ?.trigger(this, { boiler_dhw_curtemp: newData.dhw.curtemp }, newData);
   }
 
-  private getSmartGrid(data: BoilerData) {
+  private cleanupError(error: string) {
+    if (error === undefined || error === "")
+      return "";
 
-     if( data.hpin1 === "off" && data.hpin2 === "off" && data.hpin3 === "off" && data.hpin4 === "off" )
-      return "normal";
+    return error.replace("--", "").trim();
+  }
 
-    return "normal";
+  private getCompressorActivityLabel(value: string) {
+    switch (value) {
+      case "off": return this.homey.__("compressor_activity.off");
+      case "heating": return this.homey.__("compressor_activity.heating");
+      case "cooling": return this.homey.__("compressor_activity.cooling");
+      case "hot water": return this.homey.__("compressor_activity.hot_water");
+      case "defrost": return this.homey.__("compressor_activity.defrost");
+      case "compressor alarm": return this.homey.__("compressor_activity.alarm");
+      default: return this.homey.__("compressor_activity.unknown");
+    }
   }
 
   private async updateCapabilityValues(data: BoilerData) {
@@ -44,18 +55,18 @@ export class BoilerDevice extends Homey.Device {
       ["boiler_curflowtemp", data.curflowtemp],
       ["boiler_dhw_curtemp", data.dhw.curtemp],
       ["boiler_dhw_settemp", data.dhw.settemp],
-      ["boiler_outdoortemp", data.outdoortemp],
+      ["measure_temperature", data.outdoortemp],
       ["boiler_rettemp", data.rettemp],
-      ["boiler_lastcode", data.lastcode],
+      ["boiler_lastcode", this.cleanupError(data.lastcode)],
       ["boiler_rettemp", data.rettemp],
       ["boiler_syspress", data.syspress],
       ["meter_power", data.metertotal],
-      ["meter_power.eheater", data.metereheat],
-      ["meter_power.compressor", data.metercomp],
-      ["meter_power.heating", data.meterheat],
-      ["meter_power.dhw", data.dhw.meter],
-      ["meter_power.cool", data.metercool],
-      ["smartgrid", this.getSmartGrid(data)]
+      ["boiler_eheater_total", data.metereheat],
+      ["boiler_compressor_total", data.metercomp],
+      ["boiler_heating_total", data.meterheat],
+      ["boiler_dhw_total", data.dhw.meter],
+      ["boiler_cool_total", data.metercool],
+      ["boiler_compressor_activity", this.getCompressorActivityLabel(data.hpactivity)]
     ]);
   }
 
