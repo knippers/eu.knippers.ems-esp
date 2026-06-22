@@ -1,0 +1,89 @@
+diff --git a/drivers/boiler/device.ts b/drivers/boiler/device.ts
+index defd786..9e31de4 100644
+--- a/drivers/boiler/device.ts
++++ b/drivers/boiler/device.ts
+@@ -142,20 +142,20 @@ export class BoilerDevice extends Homey.Device {
+     // from the UI or from a Flow.
+     this.homey.flow
+       .getActionCard("boiler_set_solar_active")
+-      .registerRunListener(async (args: { state: boolean }) => {
+-        await this.triggerCapabilityListener("boiler_hpin4opt", args.state);
++      .registerRunListener(async (args: { state: "on" | "off" }) => {
++        await this.triggerCapabilityListener("boiler_hpin4opt", args.state === "on");
+       });
+ 
+     this.homey.flow
+       .getActionCard("boiler_set_block_heatpump")
+-      .registerRunListener(async (args: { state: boolean }) => {
+-        await this.triggerCapabilityListener("boiler_hpin2opt", args.state);
++      .registerRunListener(async (args: { state: "on" | "off" }) => {
++        await this.triggerCapabilityListener("boiler_hpin2opt", args.state === "on");
+       });
+ 
+     this.homey.flow
+       .getActionCard("boiler_set_dhw_activated")
+-      .registerRunListener(async (args: { state: boolean }) => {
+-        await this.triggerCapabilityListener("boiler_dhw_activated", args.state);
++      .registerRunListener(async (args: { state: "on" | "off" }) => {
++        await this.triggerCapabilityListener("boiler_dhw_activated", args.state === "on");
+       });
+ 
+     this.startPolling();
+diff --git a/drivers/boiler/driver.flow.compose.json b/drivers/boiler/driver.flow.compose.json
+index 4b9bcba..673f719 100644
+--- a/drivers/boiler/driver.flow.compose.json
++++ b/drivers/boiler/driver.flow.compose.json
+@@ -66,12 +66,12 @@
+       },
+       "args": [
+         {
+-          "type": "checkbox",
++          "type": "dropdown",
+           "name": "state",
+-          "title": {
+-            "en": "On",
+-            "nl": "Aan"
+-          }
++          "values": [
++            { "id": "on", "title": { "en": "On", "nl": "Aan" } },
++            { "id": "off", "title": { "en": "Off", "nl": "Uit" } }
++          ]
+         }
+       ]
+     },
+@@ -87,12 +87,12 @@
+       },
+       "args": [
+         {
+-          "type": "checkbox",
++          "type": "dropdown",
+           "name": "state",
+-          "title": {
+-            "en": "On",
+-            "nl": "Aan"
+-          }
++          "values": [
++            { "id": "on", "title": { "en": "On", "nl": "Aan" } },
++            { "id": "off", "title": { "en": "Off", "nl": "Uit" } }
++          ]
+         }
+       ]
+     },
+@@ -108,12 +108,12 @@
+       },
+       "args": [
+         {
+-          "type": "checkbox",
++          "type": "dropdown",
+           "name": "state",
+-          "title": {
+-            "en": "On",
+-            "nl": "Aan"
+-          }
++          "values": [
++            { "id": "on", "title": { "en": "On", "nl": "Aan" } },
++            { "id": "off", "title": { "en": "Off", "nl": "Uit" } }
++          ]
+         }
+       ]
+     }

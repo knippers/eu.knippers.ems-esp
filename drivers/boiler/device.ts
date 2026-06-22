@@ -142,20 +142,20 @@ export class BoilerDevice extends Homey.Device {
     // from the UI or from a Flow.
     this.homey.flow
       .getActionCard("boiler_set_solar_active")
-      .registerRunListener(async (args: { state: boolean }) => {
-        await this.triggerCapabilityListener("boiler_hpin4opt", args.state);
+      .registerRunListener(async (args: { state: "on" | "off" }) => {
+        await this.triggerCapabilityListener("boiler_hpin4opt", args.state === "on");
       });
 
     this.homey.flow
       .getActionCard("boiler_set_block_heatpump")
-      .registerRunListener(async (args: { state: boolean }) => {
-        await this.triggerCapabilityListener("boiler_hpin2opt", args.state);
+      .registerRunListener(async (args: { state: "on" | "off" }) => {
+        await this.triggerCapabilityListener("boiler_hpin2opt", args.state === "on");
       });
 
     this.homey.flow
       .getActionCard("boiler_set_dhw_activated")
-      .registerRunListener(async (args: { state: boolean }) => {
-        await this.triggerCapabilityListener("boiler_dhw_activated", args.state);
+      .registerRunListener(async (args: { state: "on" | "off" }) => {
+        await this.triggerCapabilityListener("boiler_dhw_activated", args.state === "on");
       });
 
     this.startPolling();
