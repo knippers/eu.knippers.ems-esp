@@ -95,6 +95,27 @@
           }
         }
       ]
+    },
+    {
+      "id": "boiler_set_dhw_activated",
+      "title": {
+        "en": "Set Tank Activated",
+        "nl": "Stel Boiler geactiveerd in"
+      },
+      "titleFormatted": {
+        "en": "Set Tank Activated to [[state]]",
+        "nl": "Stel Boiler geactiveerd in op [[state]]"
+      },
+      "args": [
+        {
+          "type": "checkbox",
+          "name": "state",
+          "title": {
+            "en": "On",
+            "nl": "Aan"
+          }
+        }
+      ]
     }
   ]
 }

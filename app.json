@@ -235,6 +235,32 @@
             }
           }
         ]
+      },
+      {
+        "id": "boiler_set_dhw_activated",
+        "title": {
+          "en": "Set Tank Activated",
+          "nl": "Stel Boiler geactiveerd in"
+        },
+        "titleFormatted": {
+          "en": "Set Tank Activated to [[state]]",
+          "nl": "Stel Boiler geactiveerd in op [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=boiler"
+          },
+          {
+            "type": "checkbox",
+            "name": "state",
+            "title": {
+              "en": "On",
+              "nl": "Aan"
+            }
+          }
+        ]
       }
     ]
   },
@@ -261,7 +287,8 @@
         "boiler_compressor_activity",
         "boiler_hpcurrpower",
         "boiler_hpin4opt",
-        "boiler_hpin2opt"
+        "boiler_hpin2opt",
+        "boiler_dhw_activated"
       ],
       "ui": {
         "groups": {
@@ -525,6 +552,18 @@
       "decimals": 1,
       "insights": true,
       "icon": "/assets/thermometer.svg"
+    },
+    "boiler_dhw_activated": {
+      "type": "boolean",
+      "title": {
+        "en": "Tank activated",
+        "nl": "Boiler geactiveerd"
+      },
+      "uiGroup": "misc",
+      "uiComponent": "toggle",
+      "getable": true,
+      "setable": true,
+      "icon": "/assets/boiler.svg"
     },
     "boiler_dhw_curtemp": {
       "type": "number",

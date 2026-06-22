@@ -20,7 +20,8 @@
     "boiler_compressor_activity",
     "boiler_hpcurrpower",
     "boiler_hpin4opt",
-    "boiler_hpin2opt"
+    "boiler_hpin2opt",
+    "boiler_dhw_activated"
   ],
   "ui": {
     "groups": {

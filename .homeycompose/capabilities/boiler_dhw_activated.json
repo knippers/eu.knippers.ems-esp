@@ -1,0 +1,12 @@
+{
+  "type": "boolean",
+  "title": {
+    "en": "Tank activated",
+    "nl": "Boiler geactiveerd"
+  },
+  "uiGroup": "misc",
+  "uiComponent": "toggle",
+  "getable": true,
+  "setable": true,
+  "icon": "/assets/boiler.svg"
+}

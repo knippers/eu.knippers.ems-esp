@@ -81,7 +81,8 @@ export class BoilerDevice extends Homey.Device {
       ["boiler_compressor_activity", this.getCompressorActivityLabel(data.hpactivity)],
       ["boiler_hpcurrpower", data.hpcurrpower],
       ["boiler_hpin4opt", isOptionOn(data.hpin4opt)],
-      ["boiler_hpin2opt", isOptionOn(data.hpin2opt)]
+      ["boiler_hpin2opt", isOptionOn(data.hpin2opt)],
+      ["boiler_dhw_activated", data.dhw.activated === "on"]
     ]);
   }
 
@@ -130,6 +131,12 @@ export class BoilerDevice extends Homey.Device {
       await this.client.setBoilerValue("hpin2opt", data).catch(this.error);
     });
 
+    this.registerCapabilityListener("boiler_dhw_activated", async (value: boolean) => {
+      const data = value ? "on" : "off";
+      this.log(`Setting Tank activated to ${data}`);
+      await this.client.setBoilerValue("activated", data).catch(this.error);
+    });
+
     // Flow actions reuse the capability listeners above, so the device's
     // capability state stays in sync regardless of whether it's toggled
     // from the UI or from a Flow.
@@ -143,6 +150,12 @@ export class BoilerDevice extends Homey.Device {
       .getActionCard("boiler_set_block_heatpump")
       .registerRunListener(async (args: { state: boolean }) => {
         await this.triggerCapabilityListener("boiler_hpin2opt", args.state);
+      });
+
+    this.homey.flow
+      .getActionCard("boiler_set_dhw_activated")
+      .registerRunListener(async (args: { state: boolean }) => {
+        await this.triggerCapabilityListener("boiler_dhw_activated", args.state);
       });
 
     this.startPolling();
