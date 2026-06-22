@@ -130,6 +130,21 @@ export class BoilerDevice extends Homey.Device {
       await this.client.setBoilerValue("hpin2opt", data).catch(this.error);
     });
 
+    // Flow actions reuse the capability listeners above, so the device's
+    // capability state stays in sync regardless of whether it's toggled
+    // from the UI or from a Flow.
+    this.homey.flow
+      .getActionCard("boiler_set_solar_active")
+      .registerRunListener(async (args: { state: boolean }) => {
+        await this.triggerCapabilityListener("boiler_hpin4opt", args.state);
+      });
+
+    this.homey.flow
+      .getActionCard("boiler_set_block_heatpump")
+      .registerRunListener(async (args: { state: boolean }) => {
+        await this.triggerCapabilityListener("boiler_hpin2opt", args.state);
+      });
+
     this.startPolling();
   }
 

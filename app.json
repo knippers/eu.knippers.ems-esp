@@ -182,6 +182,60 @@
           }
         ]
       }
+    ],
+    "actions": [
+      {
+        "id": "boiler_set_solar_active",
+        "title": {
+          "en": "Set Solar Active",
+          "nl": "Stel Zonneenergie actief in"
+        },
+        "titleFormatted": {
+          "en": "Set Solar Active to [[state]]",
+          "nl": "Stel Zonneenergie actief in op [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=boiler"
+          },
+          {
+            "type": "checkbox",
+            "name": "state",
+            "title": {
+              "en": "On",
+              "nl": "Aan"
+            }
+          }
+        ]
+      },
+      {
+        "id": "boiler_set_block_heatpump",
+        "title": {
+          "en": "Set Block Heatpump",
+          "nl": "Stel Warmtepomp blokkeren in"
+        },
+        "titleFormatted": {
+          "en": "Set Block Heatpump to [[state]]",
+          "nl": "Stel Warmtepomp blokkeren in op [[state]]"
+        },
+        "args": [
+          {
+            "type": "device",
+            "name": "device",
+            "filter": "driver_id=boiler"
+          },
+          {
+            "type": "checkbox",
+            "name": "state",
+            "title": {
+              "en": "On",
+              "nl": "Aan"
+            }
+          }
+        ]
+      }
     ]
   },
   "drivers": [
