@@ -655,6 +655,7 @@
       "uiComponent": "toggle",
       "getable": true,
       "setable": true,
+      "insights": true,
       "icon": "/assets/pump.svg"
     },
     "boiler_hpin4opt": {
@@ -667,6 +668,7 @@
       "uiComponent": "toggle",
       "getable": true,
       "setable": true,
+      "insights": true,
       "icon": "/assets/solarpanel.svg"
     },
     "boiler_lastcode": {

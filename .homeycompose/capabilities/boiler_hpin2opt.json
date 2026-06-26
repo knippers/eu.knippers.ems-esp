@@ -8,5 +8,6 @@
   "uiComponent": "toggle",
   "getable": true,
   "setable": true,
+  "insights": true,
   "icon": "/assets/pump.svg"
 }
