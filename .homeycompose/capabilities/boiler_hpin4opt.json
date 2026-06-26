@@ -1,7 +1,7 @@
 {
   "type": "boolean",
   "title": {
-    "en": "Solarpanels active",
+    "en": "Solar panels active",
     "nl": "Zonnepanelen actief"
   },
   "uiGroup": "misc",

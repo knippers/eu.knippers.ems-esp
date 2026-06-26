@@ -1,8 +1,8 @@
 {
   "type": "boolean",
   "title": {
-    "en": "Block heatpump",
-    "nl": "Warmtepomp blokkeren"
+    "en": "Block heatpump operation",
+    "nl": "Warmtepomp werking blokkeren"
   },
   "uiGroup": "misc",
   "uiComponent": "toggle",

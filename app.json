@@ -187,12 +187,12 @@
       {
         "id": "boiler_set_solar_active",
         "title": {
-          "en": "Set Solar Active",
-          "nl": "Stel Zonneenergie actief in"
+          "en": "Set Solar Panels Active",
+          "nl": "Stel Zonnepanelen actief in"
         },
         "titleFormatted": {
-          "en": "Set Solar Active to [[state]]",
-          "nl": "Stel Zonneenergie actief in op [[state]]"
+          "en": "Set Solar Panels Active to [[state]]",
+          "nl": "Stel Zonnepanelen actief in op [[state]]"
         },
         "args": [
           {
@@ -225,12 +225,12 @@
       {
         "id": "boiler_set_block_heatpump",
         "title": {
-          "en": "Set Block Heatpump",
-          "nl": "Stel Warmtepomp blokkeren in"
+          "en": "Set Block Heatpump Operation",
+          "nl": "Stel Warmtepomp werking blokkeren in"
         },
         "titleFormatted": {
-          "en": "Set Block Heatpump to [[state]]",
-          "nl": "Stel Warmtepomp blokkeren in op [[state]]"
+          "en": "Set Block Heatpump Operation to [[state]]",
+          "nl": "Stel Warmtepomp werking blokkeren in op [[state]]"
         },
         "args": [
           {
@@ -648,8 +648,8 @@
     "boiler_hpin2opt": {
       "type": "boolean",
       "title": {
-        "en": "Block heatpump",
-        "nl": "Warmtepomp blokkeren"
+        "en": "Block heatpump operation",
+        "nl": "Warmtepomp werking blokkeren"
       },
       "uiGroup": "misc",
       "uiComponent": "toggle",
@@ -660,7 +660,7 @@
     "boiler_hpin4opt": {
       "type": "boolean",
       "title": {
-        "en": "Solarpanels active",
+        "en": "Solar panels active",
         "nl": "Zonnepanelen actief"
       },
       "uiGroup": "misc",

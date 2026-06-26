@@ -111,22 +111,22 @@ export class BoilerDevice extends Homey.Device {
     this.registerCapabilityListener("boiler_hpin4opt", async (value: boolean) => {
       const current = this.lastData?.hpin4opt;
       if (current === undefined) {
-        this.error("Cannot update Solar Active, hpin4opt value not known yet");
+        this.error("Cannot update Solar Panels Active, hpin4opt value not known yet");
         return;
       }
       const data = withOptionState(current, value);
-      this.log(`Setting Solar Active to ${value} (hpin4opt=${data})`);
+      this.log(`Setting Solar Panels Active to ${value} (hpin4opt=${data})`);
       await this.client.setBoilerValue("hpin4opt", data).catch(this.error);
     });
 
     this.registerCapabilityListener("boiler_hpin2opt", async (value: boolean) => {
       const current = this.lastData?.hpin2opt;
       if (current === undefined) {
-        this.error("Cannot update Block Heatpump, hpin2opt value not known yet");
+        this.error("Cannot update Block Heatpump Operation, hpin2opt value not known yet");
         return;
       }
       const data = withOptionState(current, value);
-      this.log(`Setting Block Heatpump to ${value} (hpin2opt=${data})`);
+      this.log(`Setting Block Heatpump Operation to ${value} (hpin2opt=${data})`);
       await this.client.setBoilerValue("hpin2opt", data).catch(this.error);
     });
 
