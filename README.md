@@ -49,7 +49,6 @@ Both drivers (Thermostat and Boiler) pair against the same EMS-ESP device and ne
 | `boiler_hpcurrpower` | `hpcurrpower` | Read | W | Current compressor power |
 | `boiler_hpin4opt` | `hpin4opt` | Read/write | – | Solar panels active. Only the first character of the EMS-ESP option string is changed when toggled; the rest is preserved as-is. |
 | `boiler_hpin2opt` | `hpin2opt` | Read/write | – | Block heatpump. Same first-character toggle behaviour as above. |
-| `boiler_dhw_activated` | `dhw.activated` | Read/write | – | DHW tank activated |
 | `boiler_dhw_curtemp` | `dhw.curtemp` | Read | °C | Tank temperature |
 | `boiler_dhw_settemp` | `dhw.settemp` | Read | °C | Tank setpoint |
 | `boiler_dhw_total` | `dhw.meter` | Read | kWh | Total hot water energy |
@@ -77,5 +76,4 @@ Both drivers (Thermostat and Boiler) pair against the same EMS-ESP device and ne
 
 - **Set Solar Active to On/Off** *(Boiler)* — toggles `boiler_hpin4opt`.
 - **Set Block Heatpump to On/Off** *(Boiler)* — toggles `boiler_hpin2opt`.
-- **Set Tank Activated to On/Off** *(Boiler)* — toggles `boiler_dhw_activated`.
 
