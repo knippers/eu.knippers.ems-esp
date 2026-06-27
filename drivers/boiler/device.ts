@@ -23,6 +23,22 @@ export class BoilerDevice extends Homey.Device {
   private stopPolling: (() => void) | null = null;
   private lastData: BoilerData | null = null;
 
+  // Homey does not automatically add newly declared capabilities to devices
+  // that were paired before the capability existed. This adds any missing
+  // ones on init, so existing devices pick up new capabilities without
+  // having to be removed and re-paired (which would also wipe their
+  // Insights history).
+  // https://apps.developer.homey.app/guides/how-to-breaking-changes
+  private async syncCapabilities() {
+    const declared: string[] = this.driver.manifest.capabilities ?? [];
+    for (const capability of declared) {
+      if (!this.hasCapability(capability)) {
+        this.log(`Adding missing capability ${capability}`);
+        await this.addCapability(capability).catch(this.error);
+      }
+    }
+  }
+
   private get client() {
     return new EmsEspClient(
       this.getSetting("network_address"),
@@ -108,6 +124,8 @@ export class BoilerDevice extends Homey.Device {
   }
 
   async onInit() {
+    await this.syncCapabilities();
+
     this.registerCapabilityListener("boiler_hpin4opt", async (value: boolean) => {
       const current = this.lastData?.hpin4opt;
       if (current === undefined) {
