@@ -29,9 +29,33 @@ export class BoilerDevice extends Homey.Device {
   // having to be removed and re-paired (which would also wipe their
   // Insights history).
   // https://apps.developer.homey.app/guides/how-to-breaking-changes
+  //
+  // Capabilities are listed explicitly here (rather than read from
+  // this.driver.manifest) because that is the pattern Homey's own docs use,
+  // and this.driver.manifest is not guaranteed to be populated yet when
+  // onInit() runs.
   private async syncCapabilities() {
-    const declared: string[] = this.driver.manifest.capabilities ?? [];
-    for (const capability of declared) {
+    const capabilities = [
+      "boiler_compressor_total",
+      "boiler_cool_total",
+      "boiler_curflowtemp",
+      "boiler_dhw_curtemp",
+      "boiler_dhw_settemp",
+      "boiler_dhw_total",
+      "boiler_eheater_total",
+      "boiler_heating_total",
+      "boiler_lastcode",
+      "measure_temperature",
+      "boiler_rettemp",
+      "boiler_syspress",
+      "meter_power",
+      "boiler_compressor_activity",
+      "boiler_hpcurrpower",
+      "boiler_hpin4opt",
+      "boiler_hpin2opt"
+    ];
+
+    for (const capability of capabilities) {
       if (!this.hasCapability(capability)) {
         this.log(`Adding missing capability ${capability}`);
         await this.addCapability(capability).catch(this.error);
