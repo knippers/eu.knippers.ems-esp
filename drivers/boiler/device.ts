@@ -19,9 +19,36 @@ function withOptionState(value: string, on: boolean): string {
   return `${on ? "1" : "0"}${value.slice(1)}`;
 }
 
+type PendingToggle = { value: boolean; expiresAt: number };
+
 export class BoilerDevice extends Homey.Device {
   private stopPolling: (() => void) | null = null;
   private lastData: BoilerData | null = null;
+  private pendingHpin4opt: PendingToggle | null = null;
+  private pendingHpin2opt: PendingToggle | null = null;
+
+  // After writing hpin2opt/hpin4opt, EMS-ESP can take a few seconds to
+  // actually apply the change. Without this, a poll cycle landing in that
+  // window reads the still-old value, flips the toggle back, and then a
+  // later poll flips it forward again once EMS-ESP catches up — visible as
+  // a brief flicker. While a write is pending, we keep showing the
+  // requested value instead of a stale polled one, until either the polled
+  // value catches up or the grace period runs out (in case the write
+  // failed and the real value should win).
+  private resolveOptimisticState(
+    pending: PendingToggle | null,
+    actual: boolean,
+    clearPending: () => void
+  ): boolean {
+    if (!pending) return actual;
+
+    if (actual === pending.value || Date.now() > pending.expiresAt) {
+      clearPending();
+      return actual;
+    }
+
+    return pending.value;
+  }
 
   // Homey does not automatically add newly declared capabilities to devices
   // that were paired before the capability existed. This adds any missing
@@ -120,8 +147,16 @@ export class BoilerDevice extends Homey.Device {
       ["boiler_cool_total", data.metercool],
       ["boiler_compressor_activity", this.getCompressorActivityLabel(data.hpactivity)],
       ["boiler_hpcurrpower", data.hpcurrpower],
-      ["boiler_hpin4opt", isOptionOn(data.hpin4opt)],
-      ["boiler_hpin2opt", isOptionOn(data.hpin2opt)]
+      ["boiler_hpin4opt", this.resolveOptimisticState(
+        this.pendingHpin4opt,
+        isOptionOn(data.hpin4opt),
+        () => { this.pendingHpin4opt = null; }
+      )],
+      ["boiler_hpin2opt", this.resolveOptimisticState(
+        this.pendingHpin2opt,
+        isOptionOn(data.hpin2opt),
+        () => { this.pendingHpin2opt = null; }
+      )]
     ]);
   }
 
@@ -157,6 +192,7 @@ export class BoilerDevice extends Homey.Device {
         return;
       }
       const data = withOptionState(current, value);
+      this.pendingHpin4opt = { value, expiresAt: Date.now() + this.intervalMs * 2 };
       this.log(`Setting Solar Panels Active to ${value} (hpin4opt=${data})`);
       await this.client.setBoilerValue("hpin4opt", data).catch(this.error);
     });
@@ -168,6 +204,7 @@ export class BoilerDevice extends Homey.Device {
         return;
       }
       const data = withOptionState(current, value);
+      this.pendingHpin2opt = { value, expiresAt: Date.now() + this.intervalMs * 2 };
       this.log(`Setting Block Heatpump Operation to ${value} (hpin2opt=${data})`);
       await this.client.setBoilerValue("hpin2opt", data).catch(this.error);
     });
